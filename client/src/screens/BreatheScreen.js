@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ControlPanel from '../components/ControlPanel'; // <-- Importujemy komponent
 import './BreatheScreen.scss';
 
 const BreatheScreen = () => {
-  const [duration, setDuration] = useState(1); // Domyślnie 1 minuta
+  const [duration, setDuration] = useState(1);
+  const [isPlaying, setIsPlaying] = useState(false); // <-- Stan dla przycisku Play
   const navigate = useNavigate();
 
+  // Ta funkcja uruchomi ćwiczenie i zmieni stan przycisku
   const handleStart = () => {
-    navigate('/breathe/session', { state: { duration: duration * 60 } }); // Przekaż czas w sekundach
+    setIsPlaying(true);
+    // Małe opóźnienie dla efektu wizualnego
+    setTimeout(() => {
+      navigate('/breathe/session', { state: { duration: duration * 60 } });
+    }, 300);
   };
 
   return (
@@ -26,17 +33,12 @@ const BreatheScreen = () => {
         </button>
       </div>
 
-      <div className="breathe-screen__sound-grid">
-        {/* Tutaj można zmapować ikony dźwięków */}
-        <button className="sound-icon active">🔥</button>
-        <button className="sound-icon">🌲</button>
-        <button className="sound-icon">💧</button>
-        {/* ... etc */}
-      </div>
+      {/* PODMIANA STAREGO KODU NA NOWY KOMPONENT */}
+      <ControlPanel 
+        onPlayPause={handleStart} 
+        isPlaying={isPlaying} 
+      />
 
-      <button className="play-button" onClick={handleStart}>
-        ▶
-      </button>
     </div>
   );
 };

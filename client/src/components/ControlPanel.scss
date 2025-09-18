@@ -1,0 +1,49 @@
+@import '../styles/variables';
+
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background-color: #212124; // Trochę jaśniejsze tło dla panelu
+  border-radius: 25px;
+}
+
+.panel-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #232326, #1e1e20);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: darken($text-color, 30%);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  // Magia Neumorfizmu: jasny cień na górze, ciemny na dole
+  box-shadow: 8px 8px 16px #1a1a1d, -8px -8px 16px #28282b;
+
+  // Efekt wciśnięcia przycisku
+  &:active {
+    box-shadow: inset 8px 8px 16px #1a1a1d, inset -8px -8px 16px #28282b;
+    font-size: 22px; // Drobne zmniejszenie ikony
+  }
+
+  // Stan aktywny (wybrane ćwiczenie lub Play)
+  &.active {
+    color: $accent-color-active;
+    // Seledynowa poświata
+    box-shadow: 0 0 15px 5px rgba($accent-color-active, 0.3),
+                inset 2px 2px 4px #1a1a1d, 
+                inset -2px -2px 4px #28282b;
+  }
+}
+
+.play-button {
+  // Specjalne style dla przycisku play, jeśli potrzebne
+  font-size: 30px;
+}
