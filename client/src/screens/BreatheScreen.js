@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ControlPanel from '../components/ControlPanel'; // <-- Importujemy komponent
+// Usunięto import useNavigate i ControlPanel
 import './BreatheScreen.scss';
 
 const BreatheScreen = () => {
   const [duration, setDuration] = useState(1);
-  const [isPlaying, setIsPlaying] = useState(false); // <-- Stan dla przycisku Play
-  const navigate = useNavigate();
-
-  // Ta funkcja uruchomi ćwiczenie i zmieni stan przycisku
-  const handleStart = () => {
-    setIsPlaying(true);
-    // Małe opóźnienie dla efektu wizualnego
-    setTimeout(() => {
-      navigate('/breathe/session', { state: { duration: duration * 60 } });
-    }, 300);
-  };
+  // Usunięto stan isPlaying i funkcję handleStart - teraz są w Layout
 
   return (
+    // Zauważ, że nie ma tu już komponentu <ControlPanel />
     <div className="breathe-screen">
       <header className="breathe-screen__header">
         <h1 className="breathe-screen__title">Breathe</h1>
@@ -32,13 +22,8 @@ const BreatheScreen = () => {
           2 minutes
         </button>
       </div>
-
-      {/* PODMIANA STAREGO KODU NA NOWY KOMPONENT */}
-      <ControlPanel 
-        onPlayPause={handleStart} 
-        isPlaying={isPlaying} 
-      />
-
+      
+      {/* Puste miejsce po panelu, który jest teraz na stałe na dole ekranu */}
     </div>
   );
 };

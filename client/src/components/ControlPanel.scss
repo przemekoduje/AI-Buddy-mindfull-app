@@ -1,16 +1,44 @@
 @import '../styles/variables';
 
 .control-panel {
+  // === STYLE POZYCJONOWANIA I ANIMACJI ===
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  max-width: 450px; // Szerokość dopasowana do app-container minus padding
+  width: 100%;
+  
+  // Ukrywamy panel, zostawiając widoczny tylko kawałek
+  transform: translateX(-50%) translateY(calc(100% - 210px));
+  
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); // Płynne przejście
+  z-index: 1000;
+  
+
+  // Po najechaniu myszą, panel wysuwa się do pełnej wysokości
+  &:hover {
+    transform: translateX(-50%) translateY(0);
+  }
+  // ===========================================
+
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+  justify-items: center; 
   gap: 20px;
   padding: 20px;
-  background-color: #212124; // Trochę jaśniejsze tło dla panelu
-  border-radius: 25px;
+  background-color: transparent; // Przywracam tło dla lepszego efektu
+  border-radius: 25px 25px 0 0; // Zaokrąglenie tylko na górnych rogach
+  // Delikatny cień na górze, aby odciąć panel od tła
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
 }
 
+// === UZUPEŁNIONE STYLE DLA PRZYCISKÓW ===
 .panel-button {
-  width: 70px;
+  max-width: 100px;
+  width: 100%;
   height: 70px;
   border-radius: 20px;
   background: linear-gradient(145deg, #232326, #1e1e20);
@@ -24,26 +52,33 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  // Magia Neumorfizmu: jasny cień na górze, ciemny na dole
-  box-shadow: 8px 8px 16px #1a1a1d, -8px -8px 16px #28282b;
+  // Efekt Neumorfizmu: jasny cień na górze, ciemny na dole
+  // box-shadow: 8px 8px 16px #1a1a1d, 
+  //             -8px -8px 16px #28282b;
 
   // Efekt wciśnięcia przycisku
   &:active {
-    box-shadow: inset 8px 8px 16px #1a1a1d, inset -8px -8px 16px #28282b;
-    font-size: 22px; // Drobne zmniejszenie ikony
+    box-shadow: inset 8px 8px 16px #1a1a1d, 
+                inset -8px -8px 16px #28282b;
+    font-size: 22px; // Drobne zmniejszenie ikony dla feedbacku
   }
 
   // Stan aktywny (wybrane ćwiczenie lub Play)
   &.active {
     color: $accent-color-active;
-    // Seledynowa poświata
+    // Seledynowa poświata i delikatne wklęśnięcie
     box-shadow: 0 0 15px 5px rgba($accent-color-active, 0.3),
                 inset 2px 2px 4px #1a1a1d, 
                 inset -2px -2px 4px #28282b;
   }
+
+  .panel-icon {
+    width: 70px;  // Przykładowy rozmiar
+    height: 70px; // Przykładowy rozmiar
+  }
 }
 
 .play-button {
-  // Specjalne style dla przycisku play, jeśli potrzebne
+  // Powiększamy ikonę "play"
   font-size: 30px;
 }
