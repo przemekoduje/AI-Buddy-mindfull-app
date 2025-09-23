@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center; // centrujemy wszystko w poziomie
-  gap: 160px; // Dodajemy stały odstęp między nagłówkiem a przyciskami
+  gap: 60px; // Dodajemy stały odstęp między nagłówkiem a przyciskami
   height: 100vh;
 }
 
@@ -26,14 +26,17 @@
   // Bez zmian
   font-size: 62px;
   font-weight: 100;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  color: white;
 }
 
 .breathe-screen__subtitle {
   // Bez zmian
   font-size: 24px;
   font-weight: 300;
-  padding: 0 60px;
+  padding: 0 80px;
+  color: white;
 }
 
 .breathe-screen__duration-selector {

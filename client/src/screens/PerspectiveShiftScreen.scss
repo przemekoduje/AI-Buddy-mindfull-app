@@ -1,0 +1,215 @@
+@import "../styles/variables";
+
+// --- Główny kontener ekranu ---
+.perspective-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  gap: 40px;
+}
+
+// --- Obszar wyświetlania tekstu (pytań i odpowiedzi) ---
+.display-text-area {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+// Wewnętrzny wrapper na tekst, który jest animowany
+.text-content {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24px;
+  color: darken($text-color, 15%);
+  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+
+  // Klasy do sterowania animacją z JavaScript
+  &.hidden {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  &.visible {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+// --- Wskaźnik ładowania (nowa, dynamiczna wersja) ---
+.thinking-indicator {
+  display: flex;
+  gap: 10px;
+
+  span {
+    width: 12px;
+    height: 12px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    animation: sequential-fade 1.2s infinite ease-in-out;
+  }
+
+  // Opóźnienie animacji dla kolejnych kropek
+  span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+// Definicja animacji dla wskaźnika
+@keyframes sequential-fade {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// --- Formularz do wpisywania tekstu ---
+.thought-form.single-view {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  animation: fade-in-form 0.5s ease-out forwards;
+
+  textarea {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: $text-color;
+    font-family: $font-family;
+    font-size: 16px;
+    min-height: 80px;
+    resize: none;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  button {
+    background: $primary-color;
+    border: none;
+    padding: 15px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+
+    &:disabled {
+      background-color: $secondary-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes fade-in-form {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.conclusion-view {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; // Elementy rozciągają się na całą szerokość
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+    animation: fade-in-conclusion 1s ease-out;
+  }
+  
+  .conclusion-heading {
+    font-size: 16px;
+    font-weight: 300;
+    color: darken($text-color, 40%);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .info-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background-color: $light-background-color;
+    border-left: 3px solid $accent-color-active;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: left;
+  }
+  
+  .pill-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: darken($text-color, 20%);
+  }
+  
+  .pill-text {
+    font-size: 18px;
+    font-weight: 400;
+    color: $text-color;
+  }
+  
+  .conclusion-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+    color: darken($text-color, 15%);
+    margin: 0;
+  }
+  
+  .key-question {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+    color: $accent-color-active;
+    margin-top: 10px;
+  }
+  
+  .finish-button {
+    background: $primary-color;
+    border: none;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  
+  @keyframes fade-in-conclusion {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }

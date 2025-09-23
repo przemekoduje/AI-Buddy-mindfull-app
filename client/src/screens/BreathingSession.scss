@@ -1,0 +1,27 @@
+.session-screen {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; // Zapobiega dziwnym artefaktom animacji
+  
+    // Wrapper dla panelu, aby umieścić go na dole
+    &__panel-wrapper {
+      position: absolute;
+      bottom: 0;
+    //   transform: translateX(-50%);
+      width: 100%;
+    //   max-width: 450px;
+  
+      // Nadpisujemy style, aby panel był zawsze widoczny i nie reagował na hover
+      .control-panel {
+        position: relative;
+        transform: translateX(-50%);
+
+        transition: none;
+        border-radius: 25px 25px 0 0;
+      }
+    }
+  }

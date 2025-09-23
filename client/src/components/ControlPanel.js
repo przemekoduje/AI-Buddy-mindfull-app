@@ -37,7 +37,7 @@ const ControlPanel = ({ onPlayPause, isPlaying }) => {
               className={`panel-button play-button ${isPlaying ? 'active' : ''}`}
               onClick={onPlayPause}
             >
-              ▶
+             {isPlaying ? '❚❚' : '▶'}
             </button>
           );
         }

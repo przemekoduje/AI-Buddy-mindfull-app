@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-// Usunięto import useNavigate i ControlPanel
+import React from 'react';
+import { useOutletContext } from 'react-router-dom'; // <-- Importujemy hook
 import './BreatheScreen.scss';
 
 const BreatheScreen = () => {
-  const [duration, setDuration] = useState(1);
-  // Usunięto stan isPlaying i funkcję handleStart - teraz są w Layout
+  // Odczytujemy stan i funkcję z nadrzędnego Layout
+  const { duration, setDuration } = useOutletContext();
 
   return (
-    // Zauważ, że nie ma tu już komponentu <ControlPanel />
     <div className="breathe-screen">
       <header className="breathe-screen__header">
         <h1 className="breathe-screen__title">Breathe</h1>
@@ -15,6 +14,7 @@ const BreatheScreen = () => {
       </header>
 
       <div className="breathe-screen__duration-selector">
+        {/* Przyciski teraz wywołują funkcję setDuration z Layout */}
         <button onClick={() => setDuration(1)} className={duration === 1 ? 'active' : ''}>
           1 minute
         </button>
@@ -22,8 +22,6 @@ const BreatheScreen = () => {
           2 minutes
         </button>
       </div>
-      
-      {/* Puste miejsce po panelu, który jest teraz na stałe na dole ekranu */}
     </div>
   );
 };

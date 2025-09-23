@@ -1,0 +1,56 @@
+@import '../styles/variables';
+
+// Kontener dla całego komponentu intro
+.intro-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px; // Zapewnia stałą wysokość
+}
+
+// Style dla animowanego tekstu myśli (bez zmian)
+.intro-thought {
+  font-size: 28px;
+  font-weight: 300;
+  color: darken($text-color, 30%);
+  font-style: italic;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+// === NOWE STYLE DLA LOADERA ===
+
+.intro-loader {
+  display: flex;
+  gap: 10px;
+
+  span {
+    width: 12px;
+    height: 12px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    animation: sequential-fade 1.2s infinite ease-in-out;
+  }
+
+  span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+// Animacja dla kropek loadera (można ją przenieść do pliku globalnego, jeśli będzie używana w wielu miejscach)
+@keyframes sequential-fade {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
