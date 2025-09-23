@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './BreathingAnimation.scss';
 
-const BreathingAnimation = () => {
-  const [text, setText] = useState('Get ready...');
-  const cycleTime = 8000; // 8 sekund na cykl (4 wdech, 4 wydech)
-
-  useEffect(() => {
-    // Ustaw tekst na "Wdech" (Inhale)
-    setText('Inhale');
-    
-    // Ustaw interwał zmiany tekstu
-    const interval = setInterval(() => {
-      setText('Exhale');
-      setTimeout(() => setText('Inhale'), cycleTime / 2);
-    }, cycleTime);
-
-    // Wyczyść interwał po odmontowaniu komponentu
-    return () => clearInterval(interval);
-  }, []);
-
+const BreathingAnimation = ({ isReady, text, countdown, scale }) => {
   return (
     <div className="breathing-container">
-      <div className="breathing-circle"></div>
-      <p className="breathing-text">{text}</p>
+      <div 
+        className="breathing-circle"
+        style={{ transform: `scale(${scale})` }}
+      >
+        {/* ZMIANA: Dodajemy dwa divy dla efektów świetlnych */}
+        <div className="breathing-circle__highlight"></div>
+        <div className="breathing-circle__glow"></div>
+      </div>
+      
+      {!isReady && countdown ? (
+        <p className="countdown-text">{countdown}</p>
+      ) : (
+        isReady && <p className="breathing-text">{text}</p>
+      )}
     </div>
   );
 };

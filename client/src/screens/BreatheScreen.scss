@@ -1,65 +1,68 @@
-@import '../styles/variables';
+@import "../styles/variables";
 
 .breathe-screen {
+  // Tło i ogólny wygląd pozostają bez zmian
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/images/background01.png");
+  background-size: cover;
+  background-position: center top;
+  text-align: center;
+
+  // ZMIANA: Upraszczamy layout flexbox
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 90vh;
-//   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/breathe-background.jpg');
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  padding: 20px;
-  border-radius: 15px;
+  align-items: center; // centrujemy wszystko w poziomie
+  gap: 60px; // Dodajemy stały odstęp między nagłówkiem a przyciskami
+  height: 100vh;
+}
 
-  &__header {
-    margin-top: 30px;
-  }
+.breathe-screen__header {
+  // Bez zmian
+  margin-top: 30px;
   
-  &__title {
-    font-size: 48px;
-    font-weight: 200;
-  }
+}
 
-  &__subtitle {
-    font-size: 18px;
-    font-weight: 300;
-  }
+.breathe-screen__title {
+  // Bez zmian
+  font-size: 62px;
+  font-weight: 100;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  color: white;
+}
 
-  &__duration-selector {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.breathe-screen__subtitle {
+  // Bez zmian
+  font-size: 24px;
+  font-weight: 300;
+  padding: 0 80px;
+  color: white;
+}
 
-    button {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: $text-color;
-      padding: 15px;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.2s;
+.breathe-screen__duration-selector {
+  // Bez zmian, ale dodajemy szerokość dla pewności
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px; // Ograniczamy szerokość przycisków na większych ekranach
 
-      &.active {
-        background: $primary-color;
-        border-color: $primary-color;
-        color: white;
-      }
+  button {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid $primary-color;
+    color: $text-color;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &.active {
+      background: $primary-color;
+      border-color: $primary-color;
+      color: white;
     }
   }
-  
-  .play-button {
-      background: $primary-color;
-      border: none;
-      color: white;
-      font-size: 24px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      align-self: center;
-      cursor: pointer;
-  }
-
-  // Style dla siatki dźwięków (sound-grid) można dodać analogicznie
 }
+
+// USUNIĘTO: Style dla .play-button i .sound-grid, ponieważ nie ma ich już w komponencie

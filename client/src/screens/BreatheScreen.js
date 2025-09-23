@@ -1,21 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ControlPanel from '../components/ControlPanel'; // <-- Importujemy komponent
+import React from 'react';
+import { useOutletContext } from 'react-router-dom'; // <-- Importujemy hook
 import './BreatheScreen.scss';
 
 const BreatheScreen = () => {
-  const [duration, setDuration] = useState(1);
-  const [isPlaying, setIsPlaying] = useState(false); // <-- Stan dla przycisku Play
-  const navigate = useNavigate();
-
-  // Ta funkcja uruchomi ćwiczenie i zmieni stan przycisku
-  const handleStart = () => {
-    setIsPlaying(true);
-    // Małe opóźnienie dla efektu wizualnego
-    setTimeout(() => {
-      navigate('/breathe/session', { state: { duration: duration * 60 } });
-    }, 300);
-  };
+  // Odczytujemy stan i funkcję z nadrzędnego Layout
+  const { duration, setDuration } = useOutletContext();
 
   return (
     <div className="breathe-screen">
@@ -25,6 +14,7 @@ const BreatheScreen = () => {
       </header>
 
       <div className="breathe-screen__duration-selector">
+        {/* Przyciski teraz wywołują funkcję setDuration z Layout */}
         <button onClick={() => setDuration(1)} className={duration === 1 ? 'active' : ''}>
           1 minute
         </button>
@@ -32,13 +22,6 @@ const BreatheScreen = () => {
           2 minutes
         </button>
       </div>
-
-      {/* PODMIANA STAREGO KODU NA NOWY KOMPONENT */}
-      <ControlPanel 
-        onPlayPause={handleStart} 
-        isPlaying={isPlaying} 
-      />
-
     </div>
   );
 };
