@@ -8,9 +8,12 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  padding: 20px 0;
+  padding: 130px 30px ;
   text-align: center;
   gap: 40px;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 // --- Obszar wyświetlania tekstu (pytań i odpowiedzi) ---
@@ -28,7 +31,7 @@
   text-align: left;
   font-size: 28px;
   font-weight: 300;
-  line-height: 24px;
+  line-height: 32px;
   color: darken($text-color, 15%);
   transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
 
@@ -80,7 +83,7 @@
 .thought-form.single-view {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 55px;
   width: 100%;
   max-width: 400px;
   animation: fade-in-form 0.5s ease-out forwards;
@@ -88,12 +91,11 @@
   textarea {
     background: transparent;
     border: none;
-    border-radius: 10px;
-    padding: 15px;
+    padding: 15px 0;
     color: darken($text-color, 15%);
     font-family: $font-family;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 28px;
     min-height: 80px;
     resize: none;
 
@@ -133,84 +135,90 @@
   }
 }
 
-
 .conclusion-view {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; // Elementy rozciągają się na całą szerokość
-    gap: 20px;
-    width: 100%;
-    max-width: 450px;
-    animation: fade-in-conclusion 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; // Elementy rozciągają się na całą szerokość
+  gap: 20px;
+  width: 100%;
+  animation: fade-in-conclusion 1s ease-out;
+}
+
+.conclusion-heading {
+  font-size: 16px;
+  font-weight: 300;
+  color: darken($text-color, 40%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+}
+
+.info-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #1c1c1c;
+  border-radius: 18px;
+  padding: 25px;
+
+  text-align: left;
+}
+
+.pill-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: darken($text-color, 0%);
+}
+
+.pill-text {
+  font-size: 24px;
+  font-weight: 400;
+  color: $text-color;
+  line-height: 1.4;
+}
+
+.conclusion-paragraph {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: left;
+  color: darken($text-color, 0%);
+  padding: 25px;
+  margin: 0;
+}
+
+.key-question {
+  font-size: 24px;
+  line-height: 1.6;
+  text-align: center;
+  font-style: italic;
+  color: $accent-color-active;
+  margin-top: 10px;
+}
+
+.finish-button {
+  background: $primary-color;
+  border: none;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 25px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
   }
-  
-  .conclusion-heading {
-    font-size: 16px;
-    font-weight: 300;
-    color: darken($text-color, 40%);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 0;
-    text-align: center;
+}
+
+@keyframes fade-in-conclusion {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .info-pill {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    background-color: transparent;
-    // border-left: 3px solid $accent-color-active;
-    padding: 15px 20px;
-    border-radius: 8px;
-    text-align: left;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .pill-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: darken($text-color, 20%);
-  }
-  
-  .pill-text {
-    font-size: 18px;
-    font-weight: 400;
-    color: $text-color;
-  }
-  
-  .conclusion-paragraph {
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: left;
-    color: darken($text-color, 15%);
-    margin: 0;
-  }
-  
-  .key-question {
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: center;
-    font-style: italic;
-    color: $accent-color-active;
-    margin-top: 10px;
-  }
-  
-  .finish-button {
-    background: $primary-color;
-    border: none;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 25px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  
-    &:hover {
-      background-color: darken($primary-color, 10%);
-    }
-  }
-  
-  @keyframes fade-in-conclusion {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+}
