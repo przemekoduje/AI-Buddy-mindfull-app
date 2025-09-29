@@ -5,8 +5,10 @@ import './HomeScreen.scss';
 const exercises = [
   { title: 'Breathe', subtitle: 'To quick calm down', path: '/breathe' },
   { title: 'Perspective shift', subtitle: 'To see things differently', path: '/perspective' },
-  { title: 'Values Compass', subtitle: 'To set your intentions for the day', path: '/daily-compass' },
+  { title: 'Values Compass', subtitle: 'To set your intentions for the day', path: '/values-compass' },
   { title: 'Anchor', subtitle: 'To realease anxieties', path: '/anchor' },
+  { title: 'SoundMapping', subtitle: 'To realease anxieties', path: '/sound-mapping' },
+  { title: 'Stop', subtitle: 'To realease anxieties', path: '/stop' },
   
 ];
 

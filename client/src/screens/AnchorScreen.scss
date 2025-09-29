@@ -1,0 +1,51 @@
+// src/screens/AnchorScreen.scss
+@import '../styles/variables';
+
+.anchor-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Rozmieszcza zawartość i przycisk
+  align-items: center;
+  width: 100%;
+  height: 100vh; // Zajmuje całą wysokość widoku
+  max-width: 500px; // Ogranicza szerokość na dużych ekranach
+  margin: 0 auto; // Centruje poziomo
+  padding: 40px 20px 80px; // Padding z góry, boków i większy na dole pod przycisk
+  box-sizing: border-box; // Padding wliczony w wysokość/szerokość
+  text-align: center;
+}
+
+.content-box {
+  flex-grow: 1; // Rozciąga się, aby zająć dostępną przestrzeń
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Centruje tekst w pionie
+  align-items: center;
+  padding: 20px;
+  background-color: rgba($light-background-color, 0.4); // Półprzezroczyste tło
+  border-radius: 18px;
+  backdrop-filter: blur(10px); // Efekt szklanego morfizmu
+  border: 1px solid rgba($primary-color, 0.3); // Delikatna ramka
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  text-align: left; // Tekst wyrównany do lewej
+}
+
+.display-text {
+  font-size: 24px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: $text-color;
+  margin: 0;
+  animation: text-fade-in 0.8s ease-out forwards;
+}
+
+@keyframes text-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loader {
+  margin-top: 20px;
+  // Tutaj będą style dla nowego loadera
+}
