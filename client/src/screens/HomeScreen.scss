@@ -1,15 +1,24 @@
-@import '../styles/variables';
+@import "../styles/variables";
 
 .home-screen {
+  display: flex;
+  flex-direction: column;
+
+  height: calc(100vh - 40px);
+
   &__title {
     font-weight: 300;
     font-size: 24px;
     margin-bottom: 30px;
+    flex-shrink: 0;
   }
 
   &__list {
     list-style: none;
     padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
   }
 
   &__list-item {
@@ -40,12 +49,12 @@
 }
 
 .item-title {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
 }
 
 .item-subtitle {
-  font-size: 14px;
+  font-size: 20px;
   color: darken($text-color, 30%);
   margin-top: 4px;
 }

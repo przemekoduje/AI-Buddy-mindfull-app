@@ -4,8 +4,10 @@ import './HomeScreen.scss';
 
 const exercises = [
   { title: 'Breathe', subtitle: 'To quick calm down', path: '/breathe' },
-  { title: 'Focus Reset', subtitle: 'To regain concentration', path: '/focus-reset' },
-  // ...dodaj resztę ćwiczeń
+  { title: 'Perspective shift', subtitle: 'To see things differently', path: '/perspective' },
+  { title: 'Values Compass', subtitle: 'To set your intentions for the day', path: '/daily-compass' },
+  { title: 'Anchor', subtitle: 'To realease anxieties', path: '/anchor' },
+  
 ];
 
 const HomeScreen = () => {
