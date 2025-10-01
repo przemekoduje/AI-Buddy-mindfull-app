@@ -11,6 +11,8 @@ import SoundMappingScreen from './screens/SoundMappingScreen';
 import AnchorScreen from './screens/AnchorScreen';
 import ValuesCompassScreen from './screens/ValuesCompassScreen';
 import StopScreen from './screens/StopScreen';
+import ExternalObserverScreen from './screens/ExternalObserverScreen';
+import BodySafePlaceScreen from './screens/BodySafePlaceScreen';
 
 // Komponent z logiką routingu musi być wewnątrz Routera, więc go zostawiamy
 const AppContent = () => {
@@ -28,6 +30,8 @@ const AppContent = () => {
           <Route path="/anchor" element={<AnchorScreen />} />
           <Route path="/values-compass" element={<ValuesCompassScreen />} />
           <Route path="/stop" element={<StopScreen />} />
+          <Route path="/external-observer" element={<ExternalObserverScreen />} />
+          <Route path="/body-safe-place" element={<BodySafePlaceScreen />} />
         </Route>
         <Route path="/breathe/session" element={<BreathingSession />} />
       </Routes>

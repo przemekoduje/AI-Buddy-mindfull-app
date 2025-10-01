@@ -5,10 +5,12 @@ import './HomeScreen.scss';
 const exercises = [
   { title: 'Breathe', subtitle: 'To quick calm down', path: '/breathe' },
   { title: 'Perspective shift', subtitle: 'To see things differently', path: '/perspective' },
-  { title: 'Values Compass', subtitle: 'To set your intentions for the day', path: '/values-compass' },
-  { title: 'Anchor', subtitle: 'To realease anxieties', path: '/anchor' },
-  { title: 'SoundMapping', subtitle: 'To realease anxieties', path: '/sound-mapping' },
-  { title: 'Stop', subtitle: 'To realease anxieties', path: '/stop' },
+  { title: 'Values Compass', subtitle: 'To find your direction', path: '/values-compass' },
+  { title: 'Anchor', subtitle: 'To ground yourself in the present moment', path: '/anchor' },
+  { title: 'Sound Mapping', subtitle: 'To focus on sounds and find calm', path: '/sound-mapping' },
+  { title: 'Stop', subtitle: 'To interrupt the stress cycle', path: '/stop' },
+  { title: 'External Observer', subtitle: 'To detach from a difficult emotion', path: '/external-observer' },
+  { title: 'Body Safe Place', subtitle: 'To find a feeling of calm in your body', path: '/body-safe-place' },
   
 ];
 
