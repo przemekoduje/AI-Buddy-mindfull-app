@@ -85,7 +85,9 @@ const AnchorScreen = () => {
   return (
     <div className="anchor-screen">
       <div className="content-box">
-        <p className="display-text">{displayContent}</p>
+        <p className={`display-text ${step === 0 ? 'is-description' : 'is-command'}`}>
+          {displayContent}
+        </p>
         {isLoading && (
           <div className="loader">
             {/* Tutaj Twój nowy loader */}

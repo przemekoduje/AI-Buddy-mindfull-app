@@ -1,28 +1,31 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Target, Play, Pause, Wind, VolumeX, Eye, Anchor, Compass, Shield, Maximize } from 'lucide-react';
+import { Play, Pause, Wind, Eye, Anchor, Compass, Shield, Hand } from 'lucide-react';
 import './ControlPanel.scss';
 
 const dockItems = [
-  { id: 'focus', path: '/focus-reset', Icon: Target, color: '#bae6fd' },
   { id: 'breathe', path: '/breathe', Icon: Wind, color: '#e0f2fe' },
-  { id: 'silence', path: '/moment-of-silence', Icon: VolumeX, color: '#e9d5ff' },
   { id: 'perspective', path: '/perspective', Icon: Eye, color: '#fef08a' },
   { id: 'play', isPlayButton: true, color: '#ffffff' }, // Special central button
   { id: 'anchor', path: '/anchor', Icon: Anchor, color: '#e2e8f0' },
-  { id: 'compass', path: '/daily-compass', Icon: Compass, color: '#fed7aa' },
-  { id: 'scan', path: '/body-scan', Icon: Shield, color: '#a7f3d0' },
-  { id: 'gaze', path: '/shift-your-gaze', Icon: Maximize, color: '#fecaca' },
+  { id: 'compass', path: '/values-compass', Icon: Compass, color: '#fed7aa' },
+  { id: 'scan', path: '/body-safe-place', Icon: Shield, color: '#a7f3d0' },
+  { id: 'stop', path: '/stop', Icon: Hand, color: '#fecaca' },
 ];
 
 const ControlPanel = ({ onPlayPause, isPlaying }) => {
   const location = useLocation();
 
+  // Filter out the play button if the onPlayPause callback is not provided
+  const activeItems = onPlayPause 
+    ? dockItems 
+    : dockItems.filter(item => !item.isPlayButton);
+
   return (
     <div className="control-panel-wrapper">
       <div className="control-panel-dock">
-        {dockItems.map((item) => {
+        {activeItems.map((item) => {
           if (item.isPlayButton) {
             return (
               <motion.button

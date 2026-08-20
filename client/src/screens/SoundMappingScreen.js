@@ -67,11 +67,12 @@ const SoundMappingScreen = () => {
   return (
     <div className="sound-mapping-screen">
       <div className="content-box">
-        <p className="display-text">{displayContent}</p>
+        <p className={`display-text ${currentStepData.type === 'guided' ? 'is-command' : 'is-description'}`}>
+          {displayContent}
+        </p>
         {isLoading && (
           <div className="loader">
             {/* Tutaj będzie Twój nowy loader, zamiast trzech kropek */}
-            {/* <div className="thinking-indicator"><span></span><span></span><span></span></div> */}
           </div>
         )}
       </div>

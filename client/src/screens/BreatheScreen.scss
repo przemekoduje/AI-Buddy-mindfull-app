@@ -1,64 +1,229 @@
 @import "../styles/variables";
 
 .breathe-screen {
-  // Tło i ogólny wygląd opierają się na globalnym tle
   text-align: center;
-
-  // ZMIANA: Upraszczamy layout flexbox
   display: flex;
   flex-direction: column;
-  align-items: center; // centrujemy wszystko w poziomie
-  gap: 60px; // Dodajemy stały odstęp między nagłówkiem a przyciskami
+  align-items: center;
+  gap: 30px;
   flex: 1;
+  width: 100%;
 }
 
 .breathe-screen__header {
-  // Bez zmian
-  margin-top: 30px;
-  
+  margin-top: 20px;
 }
 
 .breathe-screen__title {
-  // Bez zmian
-  font-size: 62px;
-  font-weight: 100;
-  margin-bottom: 70px;
-  margin-top: 70px;
+  font-size: 54px;
+  font-weight: 200;
+  margin-bottom: 10px;
+  margin-top: 10px;
   color: $text-color;
+  letter-spacing: -1px;
 }
 
 .breathe-screen__subtitle {
-  // Bez zmian
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
-  padding: 0 80px;
-  color: $text-color;
+  color: $text-muted;
 }
 
-.breathe-screen__duration-selector {
-  // Bez zmian, ale dodajemy szerokość dla pewności
+.config-container {
+  width: 100%;
+  max-width: 650px;
+  padding: 2.5rem;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 350px; // Ograniczamy szerokość przycisków na większych ekranach
+  gap: 2.5rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
 
-  button {
-    background: $surface-color;
-    border: 1px solid rgba(0,0,0,0.1);
+.config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 500;
     color: $text-color;
-    padding: 15px;
-    border-radius: 25px;
-    font-size: 20px;
+    margin: 0;
+    letter-spacing: -0.2px;
+  }
+}
+
+// 1. Durations
+.duration-selector-row {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+
+  .duration-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+    }
 
     &.active {
       background: $primary-color;
       border-color: $primary-color;
+      box-shadow: 0 8px 20px rgba(91, 192, 190, 0.25);
+
+      .duration-text {
+        color: white;
+        font-weight: 500;
+      }
+    }
+
+    .duration-text {
+      font-size: 1.15rem;
+      font-weight: 400;
       color: $text-color;
+      transition: all 0.3s ease;
     }
   }
 }
 
-// USUNIĘTO: Style dla .play-button i .sound-grid, ponieważ nie ma ich już w komponencie
+// 2. Techniques
+.technique-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media (max-width: 550px) {
+    grid-template-columns: 1fr;
+  }
+
+  .technique-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      background: white;
+      border-color: $primary-color;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+      .technique-card__name {
+        color: $primary-color;
+      }
+    }
+
+    &__name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $text-color;
+      margin: 0 0 6px 0;
+      transition: color 0.3s ease;
+    }
+
+    &__desc {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+}
+
+// 3. Themes
+.theme-selector-row {
+  display: flex;
+  gap: 20px;
+
+  .theme-circle-btn {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid transparent;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.active {
+      border-color: $text-color;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .theme-indicator {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--theme-color);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Start Button
+.start-session-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem;
+  margin-top: 15px;
+  background: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 35px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(91, 192, 190, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: darken($primary-color, 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(91, 192, 190, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+

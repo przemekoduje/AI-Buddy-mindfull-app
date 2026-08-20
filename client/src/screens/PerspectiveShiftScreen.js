@@ -136,25 +136,38 @@ const PerspectiveShiftScreen = () => {
       )}
 
       {step === "showConclusion" && aiConclusion && (
-        <div className="conclusion-view">
-          {/* <h4 className="conclusion-heading">Analiza Twojej Myśli</h4> */}
+        <div className="conclusion-card glass-panel">
+          <header className="conclusion-header">
+            <h2 className="conclusion-title">Podsumowanie Sesji</h2>
+            <p className="conclusion-subtitle">Twój shift perspektywy</p>
+          </header>
 
-          <div className="info-pill">
-            <span className="pill-title">{aiConclusion.diagnosisTitle}</span>
-            <span className="pill-text">{aiConclusion.diagnosisText}</span>
+          <div className="conclusion-grid">
+            <div className="conclusion-section pattern-section">
+              <span className="section-label">Zidentyfikowany Wzorzec</span>
+              <h3 className="section-title">{aiConclusion.diagnosisTitle}</h3>
+              <p className="section-text">{aiConclusion.diagnosisText}</p>
+            </div>
+
+            <div className="conclusion-section tool-section">
+              <span className="section-label">Zalecane Narzędzie</span>
+              <h3 className="section-title">{aiConclusion.toolTitle}</h3>
+              <p className="section-text">{aiConclusion.toolText}</p>
+            </div>
+
+            <div className="conclusion-section insight-section">
+              <span className="section-label">Nowa Perspektywa / Wniosek</span>
+              <p className="section-text">{aiConclusion.discoveryText}</p>
+            </div>
           </div>
 
-          <p className="conclusion-paragraph">{aiConclusion.discoveryText}</p>
-
-          <div className="info-pill">
-            <span className="pill-title">{aiConclusion.toolTitle}</span>
-            <span className="pill-text">{aiConclusion.toolText}</span>
+          <div className="conclusion-reflection">
+            <span className="reflection-label">Kluczowe Pytanie / Refleksja</span>
+            <p className="reflection-question">"{aiConclusion.keyQuestion}"</p>
           </div>
-
-          <p className="key-question">"{aiConclusion.keyQuestion}"</p>
 
           <button onClick={handleFinish} className="finish-button">
-            Zakończ
+            Powrót do menu głównego
           </button>
         </div>
       )}

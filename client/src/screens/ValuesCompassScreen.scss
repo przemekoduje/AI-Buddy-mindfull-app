@@ -9,10 +9,49 @@
   flex: 1;
   padding: 20px;
   box-sizing: border-box;
+  max-width: 900px; // Zwiększono z 500px dla dużej czcionki
+  margin: 0 auto;
 
   &.chat-view {
     justify-content: flex-end;
     gap: 15px;
+    max-width: 500px; // keep chat-view restricted
+  }
+
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .display-text {
+    animation: text-fade-in 0.8s ease-out forwards;
+
+    &.is-description {
+      font-size: 20px !important;
+      line-height: 1.6 !important;
+      font-weight: 300 !important;
+      color: $text-muted !important;
+      max-width: 600px;
+    }
+
+    &.is-command {
+      font-size: min(54px, 8.5vw) !important;
+      line-height: 1.45 !important;
+      font-weight: 200 !important;
+      color: $text-color !important;
+    }
   }
 }
 
@@ -74,44 +113,16 @@
     flex-grow: 1;
     min-height: 50px;
     height: 50px;
-    // Skopiuj style textarea z PerspectiveShiftScreen.scss
   }
   button {
     height: 50px;
-    // Skopiuj style button z PerspectiveShiftScreen.scss
   }
 }
 
 .message.loading {
-  // Skopiuj style loadera z PerspectiveShiftScreen.scss
   span { /* ... */ }
 }
 @keyframes sequential-fade { /* ... */ }
-
-// Style dla widoku po zakończeniu czatu
-.content-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  background-color: rgba($surface-color, 0.4);
-  border-radius: 18px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-}
-
-.display-text {
-  font-size: 24px;
-  line-height: 1.6;
-  font-weight: 300;
-  color: $text-color;
-  animation: text-fade-in 0.8s ease-out forwards;
-}
 
 @keyframes text-fade-in {
   from { opacity: 0; transform: translateY(10px); }

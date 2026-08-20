@@ -1,107 +1,109 @@
 @import '../styles/variables';
 
-/*
-  UWAGA: Usunęliśmy definicję @keyframes inhale-exhale.
-  Nie jest już potrzebna, ponieważ animacją steruje JavaScript.
-*/
-
 .breathing-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  overflow: visible;
+}
+
+.breathing-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
   position: relative;
-  
+  overflow: visible;
 }
 
 .breathing-circle {
-    margin-top: 150px;
-    width: 250px; // Możemy go trochę powiększyć
-    height: 250px;
-    border-radius: 50%;
-    
-    // === NOWA STYLIZACJA "GLASSMORPHISM" ===
+  width: min(380px, 75vw);
+  height: min(380px, 75vw);
+  border-radius: 50%;
   
-    // 1. Główny korpus balonu (półprzezroczysty)
-    background: rgba(58, 80, 107, 0.15); // Bardzo subtelny, przezroczysty kolor
-    border: 1px solid rgba(255, 255, 255, 0.1); // Delikatna krawędź
-    backdrop-filter: blur(12px); // Efekt "matowego szkła"
-    position: relative; // Niezbędne do pozycjonowania efektów
-    overflow: hidden; // Ukrywa części efektów wystające poza koło
+  // Premium Glassmorphism
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-    // Pseudo-element do stworzenia subtelnego cienia na dole
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
-    }
+  // 3D Glass highlights and shadows inside the circle
+  box-shadow: 
+    inset 0 25px 40px rgba(255, 255, 255, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -20px 40px rgba(0, 0, 0, 0.15),
+    0 30px 60px rgba(0, 0, 0, 0.25);
   
-    // 2. Efekt blasku/poświaty (używamy dedykowanego diva)
-    &__glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      height: 80%;
-      background: radial-gradient(circle, rgba(91, 192, 190, 0.3) 0%, rgba(91, 192, 190, 0) 70%);
-      z-index: -1; // Chowa się za głównym tłem
-    }
-  
-    // 3. Efekt odbicia światła (blik), który daje iluzję 3D
-    &__highlight {
-      position: absolute;
-      top: -50px;
-      left: -80px;
-      width: 250px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
-      transform: rotate(-30deg);
-      opacity: 0.8;
-    }
+  // Transition for scale changes driven by JS
+  transition: transform 0.1s ease-out;
+  overflow: visible; // Allow glows to bleed out completely
+
+  &__glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160%; // Bleeds far outside the circle
+    height: 160%;
+    background: radial-gradient(circle, rgba(91, 192, 190, 0.35) 0%, rgba(91, 192, 190, 0.05) 50%, rgba(91, 192, 190, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
   }
+
+  &__highlight {
+    position: absolute;
+    top: 10px;
+    left: 15%;
+    width: 70%;
+    height: 30%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+    border-radius: 50% / 100% 100% 0 0;
+    pointer-events: none;
+  }
+}
 
 .breathing-text {
-    position: absolute;
-    top: 240px;
-    color: rgba(255, 255, 255, 0.3); // ZMIANA: Mniejsza przezroczystość
-    font-size: 24px;
-    font-weight: 200; // ZMIANA: Cieńsza czcionka
-    // ZMIANA: Delikatny cień, który daje efekt "wytrawienia"
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
-    // ZMIANA: Płynne przejście przy zmianie tekstu
-    transition: opacity 0.5s ease-in-out; 
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  pointer-events: none;
+  z-index: 10;
 }
 
-/* Style dla odliczania pozostają bez zmian */
-@keyframes countdown-fade {
-    0% {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    20% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    80% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-  }
-  
-.countdown-text {
+// Countdown styles
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  color: white;
-  font-size: 80px;
-  font-weight: 200;
-  animation: countdown-fade 1s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  overflow: visible;
 }
+
+.countdown-number {
+  color: #ffffff;
+  font-size: min(120px, 20vw);
+  font-weight: 100;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 

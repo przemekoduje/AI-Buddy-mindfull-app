@@ -18,14 +18,16 @@
 }
 
 .step-letter {
-  font-size: 200px;
+  font-size: min(480px, 75vw);
   font-weight: 100;
-  color: rgba($secondary-color, 0.5);
+  color: rgba($secondary-color, 0.07);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .step-content {
@@ -38,17 +40,20 @@
 }
 
 .step-title {
-  font-size: 48px;
+  font-size: 20px;
   font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: $text-muted;
   margin: 0;
 }
 
 .step-instruction {
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1.6;
-  max-width: 450px;
-  color: darken($text-color, 15%);
+  font-size: min(44px, 7.5vw) !important;
+  line-height: 1.45 !important;
+  font-weight: 200 !important;
+  color: $text-color !important;
+  max-width: 850px;
   margin: 0;
 }
 

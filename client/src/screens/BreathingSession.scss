@@ -1,27 +1,27 @@
 .session-screen {
-    position: relative;
-    flex: 1;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; // Zapobiega dziwnym artefaktom animacji
+    overflow: visible;
+    background: transparent;
+    pointer-events: none;
+
+    // Allow interaction with the animation and control panels
+    .breathing-container,
+    .session-screen__panel-wrapper {
+      pointer-events: auto;
+    }
   
-    // Wrapper dla panelu, aby umieścić go na dole
+    // Wrapper for panel, to ensure it doesn't conflict
     &__panel-wrapper {
       position: absolute;
       bottom: 0;
-    //   transform: translateX(-50%);
       width: 100%;
-    //   max-width: 450px;
-  
-      // Nadpisujemy style, aby panel był zawsze widoczny i nie reagował na hover
-      .control-panel {
-        position: relative;
-        transform: translateX(-50%);
-
-        transition: none;
-        border-radius: 25px 25px 0 0;
-      }
     }
   }

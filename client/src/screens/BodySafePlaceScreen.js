@@ -75,10 +75,14 @@ const BodySafePlaceScreen = () => {
     }
   };
 
+  const isCommand = step === 'scan' || step === 'question' || step === 'focus';
+
   return (
     <div className={`body-safe-place-screen ${isFading ? 'fading' : ''}`}>
       <div className="content-box">
-        <p className="display-text">{displayText}</p>
+        <p className={`display-text ${isCommand ? 'is-command' : 'is-description'}`}>
+          {displayText}
+        </p>
 
         {step === 'question' && (
           <form onSubmit={handleSubmit} className="safe-place-form">

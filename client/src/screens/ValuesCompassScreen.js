@@ -69,10 +69,13 @@ const ValuesCompassScreen = () => {
 
   // Renderowanie widoku po zakończeniu czatu
   if (step !== 'chat') {
+    const isCommand = step === 'finalQuestion';
     return (
       <div className="values-compass-screen">
         <div className="content-box">
-          <p className="display-text">{displayText}</p>
+          <p className={`display-text ${isCommand ? 'is-command' : 'is-description'}`}>
+            {displayText}
+          </p>
         </div>
       </div>
     );

@@ -1,4 +1,3 @@
-// src/screens/AnchorScreen.scss
 @import '../styles/variables';
 
 .anchor-screen {
@@ -8,36 +7,50 @@
   align-items: center;
   width: 100%;
   flex: 1; // Zajmuje całą wysokość widoku
-  max-width: 500px; // Ogranicza szerokość na dużych ekranach
+  max-width: 900px; // Zwiększono z 500px, aby duża czcionka miała przestrzeń
   margin: 0 auto; // Centruje poziomo
   padding: 40px 20px 80px; // Padding z góry, boków i większy na dole pod przycisk
   box-sizing: border-box; // Padding wliczony w wysokość/szerokość
   text-align: center;
-}
 
-.content-box {
-  flex-grow: 1; // Rozciąga się, aby zająć dostępną przestrzeń
-  display: flex;
-  flex-direction: column;
-  justify-content: center; // Centruje tekst w pionie
-  align-items: center;
-  padding: 20px;
-  background-color: rgba($surface-color, 0.4); // Półprzezroczyste tło
-  border-radius: 18px;
-  backdrop-filter: blur(10px); // Efekt szklanego morfizmu
-  border: 1px solid rgba(255, 255, 255, 0.5); // Delikatna ramka
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  text-align: left; // Tekst wyrównany do lewej
-}
+  .content-box {
+    flex-grow: 1; // Rozciąga się, aby zająć dostępną przestrzeń
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Centruje tekst w pionie
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    text-align: center; // Tekst wyrównany do środka
 
-.display-text {
-  font-size: 24px;
-  line-height: 1.6;
-  font-weight: 300;
-  color: $text-color;
-  margin: 0;
-  animation: text-fade-in 0.8s ease-out forwards;
+    // Nadpisanie stylów z ewentualnego globalnego wycieku CSS
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .display-text {
+    margin: 0;
+    animation: text-fade-in 0.8s ease-out forwards;
+
+    &.is-description {
+      font-size: 20px !important;
+      line-height: 1.6 !important;
+      font-weight: 300 !important;
+      color: $text-muted !important;
+      max-width: 600px;
+    }
+
+    &.is-command {
+      font-size: min(54px, 8.5vw) !important;
+      line-height: 1.45 !important;
+      font-weight: 200 !important;
+      color: $text-color !important;
+    }
+  }
 }
 
 @keyframes text-fade-in {
@@ -47,5 +60,5 @@
 
 .loader {
   margin-top: 20px;
-  // Tutaj będą style dla nowego loadera
 }
+

@@ -1,44 +1,43 @@
 @import "../styles/variables";
 
-// --- Główny kontener ekranu ---
 .perspective-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   width: 100%;
-  padding: 130px 30px ;
-  text-align: center;
-  gap: 40px;
+  min-height: 70vh;
   box-sizing: border-box;
-  max-width: 500px;
   margin: 0 auto;
+  gap: 40px;
 }
 
-// --- Obszar wyświetlania tekstu (pytań i odpowiedzi) ---
+// Full-screen text display area for thought prompts and questions
 .display-text-area {
-  min-height: 150px;
+  min-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-// Wewnętrzny wrapper na tekst, który jest animowany
 .text-content {
-  text-align: left;
-  font-size: 28px;
-  font-weight: 300;
-  line-height: 32px;
-  color: darken($text-color, 15%);
-  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+  text-align: center;
+  font-size: min(44px, 8vw);
+  font-weight: 200;
+  line-height: 1.4;
+  color: $text-color;
+  transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
-  // Klasy do sterowania animacją z JavaScript
   &.hidden {
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(12px);
   }
   &.visible {
     opacity: 1;
@@ -46,20 +45,21 @@
   }
 }
 
-// --- Wskaźnik ładowania (nowa, dynamiczna wersja) ---
+// Thinking Indicator
 .thinking-indicator {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
 
   span {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     background-color: $primary-color;
     border-radius: 50%;
     animation: sequential-fade 1.2s infinite ease-in-out;
   }
 
-  // Opóźnienie animacji dla kolejnych kropek
   span:nth-child(2) {
     animation-delay: 0.2s;
   }
@@ -68,36 +68,40 @@
   }
 }
 
-// Definicja animacji dla wskaźnika
 @keyframes sequential-fade {
-  0%,
-  100% {
-    opacity: 0.3;
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.8);
   }
   50% {
     opacity: 1;
+    transform: scale(1.15);
   }
 }
 
-// --- Formularz do wpisywania tekstu ---
+// Input form for user thoughts
 .thought-form.single-view {
   display: flex;
   flex-direction: column;
-  gap: 55px;
+  gap: 40px;
   width: 100%;
-  max-width: 400px;
-  animation: fade-in-form 0.5s ease-out forwards;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fade-in-form 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
   textarea {
+    text-align: center;
     background: transparent;
     border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     padding: 15px 0;
-    color: darken($text-color, 15%);
+    color: $text-color;
     font-family: $font-family;
     font-weight: 300;
-    font-size: 28px;
-    min-height: 80px;
+    font-size: 26px;
+    min-height: 100px;
     resize: none;
+    transition: border-color 0.3s ease;
 
     &:focus {
       outline: none;
@@ -108,21 +112,27 @@
   button {
     background: $primary-color;
     border: none;
-    padding: 15px;
-    border-radius: 25px;
-    color: $text-color;
-    font-size: 24px;
+    padding: 1rem;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
+    box-shadow: 0 8px 20px rgba(91, 192, 190, 0.25);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
 
     &:hover {
-      background-color: darken($primary-color, 10%);
-      
+      background-color: darken($primary-color, 5%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(91, 192, 190, 0.35);
     }
 
     &:disabled {
-      background-color: $secondary-color;
-      color: darken($text-color, 15%);
+      background-color: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.25);
+      box-shadow: none;
+      transform: none;
       cursor: not-allowed;
     }
   }
@@ -131,86 +141,160 @@
 @keyframes fade-in-form {
   from {
     opacity: 0;
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.conclusion-view {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch; // Elementy rozciągają się na całą szerokość
-  gap: 20px;
+// Conclusion Dashboard UI
+.conclusion-card {
   width: 100%;
-  animation: fade-in-conclusion 1s ease-out;
-}
-
-.conclusion-heading {
-  font-size: 16px;
-  font-weight: 300;
-  color: darken($text-color, 40%);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
-  text-align: center;
-}
-
-.info-pill {
+  max-width: 680px;
+  padding: 3rem;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background-color: #1c1c1c;
-  border-radius: 18px;
-  padding: 25px;
-
-  text-align: left;
-}
-
-.pill-title {
-  font-size: 28px;
-  font-weight: 500;
-  color: darken($text-color, 0%);
-}
-
-.pill-text {
-  font-size: 24px;
-  font-weight: 400;
-  color: $text-color;
-  line-height: 1.4;
-}
-
-.conclusion-paragraph {
-  font-size: 24px;
-  line-height: 1.4;
-  text-align: left;
-  color: darken($text-color, 0%);
-  padding: 25px;
-  margin: 0;
-}
-
-.key-question {
-  font-size: 24px;
-  line-height: 1.6;
+  gap: 2rem;
+  animation: fade-in-conclusion 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  // Premium glass styling
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
   text-align: center;
-  font-style: italic;
-  color: $accent-color-active;
-  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.conclusion-header {
+  margin-bottom: 0.5rem;
+  
+  .conclusion-title {
+    font-size: 28px;
+    font-weight: 200;
+    color: $text-color;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .conclusion-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: $text-muted;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+}
+
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.conclusion-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: $border-radius-md;
+  text-align: left;
+  gap: 8px;
+  
+  &.insight-section {
+    grid-column: span 2;
+    background: rgba(91, 192, 190, 0.06); // Soft primary tint
+    border-color: rgba(91, 192, 190, 0.15);
+    
+    @media (max-width: 600px) {
+      grid-column: span 1;
+    }
+  }
+  
+  .section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $text-muted;
+    font-weight: 600;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-color;
+    margin: 0;
+  }
+  
+  .section-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: darken($text-color, 15%);
+    margin: 0;
+  }
+}
+
+.conclusion-reflection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 1.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  margin: 0.5rem 0;
+  
+  .reflection-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $text-muted;
+    font-weight: 600;
+  }
+  
+  .reflection-question {
+    font-size: 22px;
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+    color: darken($primary-color, 5%);
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 1px 2px rgba(91, 192, 190, 0.05);
+  }
 }
 
 .finish-button {
   background: $primary-color;
   border: none;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 25px;
-  color: $text-color;
-  font-size: 24px;
+  padding: 1.1rem;
+  border-radius: 35px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
-
+  box-shadow: 0 8px 20px rgba(91, 192, 190, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background: darken($primary-color, 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(91, 192, 190, 0.35);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 }
 
