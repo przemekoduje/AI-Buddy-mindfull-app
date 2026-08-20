@@ -1,11 +1,7 @@
 @import "../styles/variables";
 
 .breathe-screen {
-  // Tło i ogólny wygląd pozostają bez zmian
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/background01.png");
-  background-size: cover;
-  background-position: center top;
+  // Tło i ogólny wygląd opierają się na globalnym tle
   text-align: center;
 
   // ZMIANA: Upraszczamy layout flexbox
@@ -13,7 +9,7 @@
   flex-direction: column;
   align-items: center; // centrujemy wszystko w poziomie
   gap: 60px; // Dodajemy stały odstęp między nagłówkiem a przyciskami
-  height: 100vh;
+  flex: 1;
 }
 
 .breathe-screen__header {
@@ -28,7 +24,7 @@
   font-weight: 100;
   margin-bottom: 70px;
   margin-top: 70px;
-  color: white;
+  color: $text-color;
 }
 
 .breathe-screen__subtitle {
@@ -36,7 +32,7 @@
   font-size: 24px;
   font-weight: 300;
   padding: 0 80px;
-  color: white;
+  color: $text-color;
 }
 
 .breathe-screen__duration-selector {
@@ -48,8 +44,8 @@
   max-width: 350px; // Ograniczamy szerokość przycisków na większych ekranach
 
   button {
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid $primary-color;
+    background: $surface-color;
+    border: 1px solid rgba(0,0,0,0.1);
     color: $text-color;
     padding: 15px;
     border-radius: 25px;
@@ -60,7 +56,7 @@
     &.active {
       background: $primary-color;
       border-color: $primary-color;
-      color: white;
+      color: $text-color;
     }
   }
 }

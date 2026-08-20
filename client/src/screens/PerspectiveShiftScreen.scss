@@ -110,7 +110,7 @@
     border: none;
     padding: 15px;
     border-radius: 25px;
-    color: white;
+    color: $text-color;
     font-size: 24px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -204,7 +204,7 @@
   padding: 15px;
   margin-top: 20px;
   border-radius: 25px;
-  color: white;
+  color: $text-color;
   font-size: 24px;
   cursor: pointer;
   transition: background-color 0.2s;

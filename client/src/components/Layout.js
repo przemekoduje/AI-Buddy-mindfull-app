@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft } from 'lucide-react';
 import ControlPanel from './ControlPanel';
 import './Layout.scss';
 
@@ -9,6 +11,7 @@ const Layout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isHome = location.pathname === '/';
   // ZMIANA: Tworzymy listę ścieżek, na których panel ma być ukryty
   const panelHiddenPaths = ['/', '/perspective'];
 
@@ -23,10 +26,37 @@ const Layout = () => {
   };
 
   return (
-    // ZMIANA TUTAJ: Dodajemy dynamiczną klasę
     <div className="main-layout">
-      <main className="content">
-        <Outlet context={{ duration, setDuration }} />
+      <AnimatePresence>
+        {!isHome && (
+          <motion.header 
+            className="top-navigation glass-panel"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Link to="/" className="back-button">
+              <ChevronLeft size={24} />
+              <span>Home</span>
+            </Link>
+          </motion.header>
+        )}
+      </AnimatePresence>
+
+      <main className={`content ${isHome ? 'is-home' : ''}`}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="page-transition-container"
+          >
+            <Outlet context={{ duration, setDuration }} />
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {!panelHiddenPaths.includes(location.pathname) && (

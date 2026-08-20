@@ -1,10 +1,19 @@
-// Kolory
-$primary-color: #00bcd4;
-$secondary-color: #2c2c2c;
-$text-color: #e0e0e0;
-$background-color: #121212;
-$light-background-color: #1e1e1e;
-$accent-color-active: #99FEFF;
+// Zmienne motywu "Serene Light"
+$primary-color: #7ba08a; // Sage green
+$secondary-color: #d3c0b3; // Warm sand
+$text-color: #2c3e38; // Dark forest green
+$text-muted: #5b756b;
+$background-color: #f4f7f6; // Soft grey-green
+$surface-color: rgba(255, 255, 255, 0.6); // Glassmorphism surface
+$surface-hover: rgba(255, 255, 255, 0.9);
+$accent-color: #b5caba;
+$accent-color-active: #98b39e;
+$border-radius-lg: 24px;
+$border-radius-md: 16px;
+$border-radius-sm: 8px;
+$shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 10px 30px rgba(44, 62, 56, 0.08);
+$shadow-lg: 0 20px 40px rgba(44, 62, 56, 0.12);
 
 // Czcionki
-$font-family: 'Inter', sans-serif;
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

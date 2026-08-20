@@ -1,61 +1,59 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Target, Play, Pause, Wind, VolumeX, Eye, Anchor, Compass, Shield, Maximize } from 'lucide-react';
 import './ControlPanel.scss';
-import focusIcon from '../assets/icons/focus reset_white.png';
-import breatheIcon from '../assets/icons/breathe_white.png';
-import momentSilence from '../assets/icons/MomentofSilence_white.png';
-import perspective from '../assets/icons/perspective shift_white.png';
-import dailyCompas from '../assets/icons/daily compas_white.png';
-import bodyScan from '../assets/icons/body scan_white.png'
-import shiftofGaze from '../assets/icons/shift of gaze_white.png'
-import anchor from '../assets/icons/stone of worries_white.png'
-// ZMIANA TUTAJ: Nowy układ przycisków
-const panelButtons = [
-  { id: 'focus', path: '/focus-reset', icon: focusIcon },
-  null, // Miejsce na przycisk Play/Pause
-  { id: 'breathe', path: '/breathe', icon: breatheIcon },
-  { id: 'silence', path: '/moment-of-silence', icon: momentSilence },
-  { id: 'perspective', path: '/perspective', icon: perspective },
-  { id: 'anchor', path: '/anchor', icon: anchor },
-  { id: 'compass', path: '/daily-compass', icon: dailyCompas },
-  { id: 'scan', path: '/body-scan', icon: bodyScan },
-  { id: 'gaze', path: '/shift-your-gaze', icon: shiftofGaze },
+
+const dockItems = [
+  { id: 'focus', path: '/focus-reset', Icon: Target, color: '#bae6fd' },
+  { id: 'breathe', path: '/breathe', Icon: Wind, color: '#e0f2fe' },
+  { id: 'silence', path: '/moment-of-silence', Icon: VolumeX, color: '#e9d5ff' },
+  { id: 'perspective', path: '/perspective', Icon: Eye, color: '#fef08a' },
+  { id: 'play', isPlayButton: true, color: '#ffffff' }, // Special central button
+  { id: 'anchor', path: '/anchor', Icon: Anchor, color: '#e2e8f0' },
+  { id: 'compass', path: '/daily-compass', Icon: Compass, color: '#fed7aa' },
+  { id: 'scan', path: '/body-scan', Icon: Shield, color: '#a7f3d0' },
+  { id: 'gaze', path: '/shift-your-gaze', Icon: Maximize, color: '#fecaca' },
 ];
 
 const ControlPanel = ({ onPlayPause, isPlaying }) => {
   const location = useLocation();
 
   return (
-    <div className="control-panel">
-      {panelButtons.map((button, index) => {
-        
-        // ZMIANA TUTAJ: Sprawdzamy, czy indeks to 1 (druga pozycja)
-        if (index === 1) {
+    <div className="control-panel-wrapper">
+      <div className="control-panel-dock">
+        {dockItems.map((item) => {
+          if (item.isPlayButton) {
+            return (
+              <motion.button
+                key="play-pause"
+                className={`dock-item play-button ${isPlaying ? 'active' : ''}`}
+                onClick={onPlayPause}
+                whileHover={{ y: -15, scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                style={{ backgroundColor: item.color }}
+              >
+                {isPlaying ? <Pause size={24} color="#2c3e38" /> : <Play size={24} color="#2c3e38" />}
+              </motion.button>
+            );
+          }
+
+          const isActive = location.pathname === item.path;
+
           return (
-            <button
-              key="play-pause"
-              className={`panel-button play-button ${isPlaying ? 'active' : ''}`}
-              onClick={onPlayPause}
-            >
-             {isPlaying ? '❚❚' : '▶'}
-            </button>
+            <Link key={item.id} to={item.path}>
+              <motion.div
+                className={`dock-item ${isActive ? 'active' : ''}`}
+                whileHover={{ y: -15, scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                style={{ backgroundColor: item.color }}
+              >
+                <item.Icon size={24} color="#2c3e38" strokeWidth={1.5} />
+              </motion.div>
+            </Link>
           );
-        }
-        
-        // Reszta przycisków nawigacyjnych
-        return (
-          <Link
-          key={button.id}
-          to={button.path}
-          className={`panel-button ${location.pathname === button.path ? 'active' : ''}`}
-        >
-          {/* ZMIANA TUTAJ: 
-            Zamiast {button.icon} używamy tagu <img> 
-          */}
-          <img src={button.icon} alt={`${button.id} icon`} className="panel-icon" />
-        </Link>
-        );
-      })}
+        })}
+      </div>
     </div>
   );
 };

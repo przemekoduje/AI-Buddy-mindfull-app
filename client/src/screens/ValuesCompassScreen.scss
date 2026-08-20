@@ -6,8 +6,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  padding: 20px 20px 350px;
+  flex: 1;
+  padding: 20px;
   box-sizing: border-box;
 
   &.chat-view {
@@ -45,13 +45,13 @@
 
   &.user {
     background-color: $primary-color;
-    color: white;
+    color: $text-color;
     align-self: flex-end;
     border-bottom-right-radius: 5px;
   }
 
   &.assistant {
-    background-color: $light-background-color;
+    background-color: $surface-color;
     align-self: flex-start;
     border-bottom-left-radius: 5px;
   }
@@ -95,10 +95,10 @@
   justify-content: center;
   align-items: center;
   padding: 30px;
-  background-color: rgba($light-background-color, 0.4);
+  background-color: rgba($surface-color, 0.4);
   border-radius: 18px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba($primary-color, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;

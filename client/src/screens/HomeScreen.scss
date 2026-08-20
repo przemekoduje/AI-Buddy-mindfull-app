@@ -1,65 +1,78 @@
-@import "../styles/variables";
+@import '../styles/variables';
 
 .home-screen {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  height: calc(100vh - 40px);
-
-  &__title {
-    font-weight: 300;
-    font-size: 24px;
-    margin-bottom: 30px;
-    flex-shrink: 0;
+.home-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  .home-screen__title {
+    font-size: 3rem;
+    color: $text-color;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
   }
-
-  &__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-    overflow-y: auto;
-  }
-
-  &__list-item {
-    border-bottom: 1px solid $secondary-color;
-    &:first-child {
-      border-top: 1px solid $secondary-color;
-    }
-
-    a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10px;
-      text-decoration: none;
-      color: $text-color;
-      transition: background-color 0.2s;
-
-      &:hover {
-        background-color: $light-background-color;
-      }
-    }
+  
+  .home-screen__subtitle {
+    font-size: 1.25rem;
+    color: $text-muted;
+    font-weight: 400;
   }
 }
 
-.item-content {
+.home-screen__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.home-card {
   display: flex;
   flex-direction: column;
-}
-
-.item-title {
-  font-size: 24px;
-  font-weight: 500;
-}
-
-.item-subtitle {
-  font-size: 20px;
-  color: darken($text-color, 30%);
-  margin-top: 4px;
-}
-
-.item-arrow {
-  font-size: 20px;
-  color: $secondary-color;
+  padding: 1.5rem;
+  height: 100%;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  
+  &:hover {
+    background: $surface-hover;
+    box-shadow: $shadow-md;
+  }
+  
+  .icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: $border-radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    
+    .item-title {
+      font-size: 1.25rem;
+      color: $text-color;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    .item-subtitle {
+      font-size: 0.95rem;
+      color: $text-muted;
+      line-height: 1.4;
+      margin: 0;
+    }
+  }
 }
