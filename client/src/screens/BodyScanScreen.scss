@@ -1,0 +1,149 @@
+@import '../styles/variables';
+
+.body-scan-screen {
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+
+  .screen-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $text-color;
+      font-weight: 700;
+    }
+  }
+
+  .scan-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .silhouette-container {
+    padding: 1rem;
+    /* Usunięto tło, ramkę i cienie dla samego kontenera postaci */
+  }
+
+  /* Silhouette Styling */
+  .silhouette {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .part {
+      background: $accent-color;
+      border-radius: 50px;
+      transition: all 0.8s ease-in-out;
+      
+      &.active {
+        background: $primary-color;
+        box-shadow: 0 0 25px rgba(123, 160, 138, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+    }
+
+    .part-head { width: 50px; height: 60px; border-radius: 30px; }
+    .part-neck { width: 20px; height: 15px; border-radius: 8px; }
+    
+    .arms-chest-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+
+      .part-arm {
+        width: 25px;
+        height: 120px;
+        border-radius: 15px;
+        &.left { transform: rotate(10deg); transform-origin: top right; }
+        &.right { transform: rotate(-10deg); transform-origin: top left; }
+        
+        &.active.left { transform: rotate(10deg) scale(1.05); }
+        &.active.right { transform: rotate(-10deg) scale(1.05); }
+      }
+
+      .chest-belly-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+
+        .part-chest { width: 70px; height: 80px; border-radius: 30px; }
+        .part-belly { width: 65px; height: 50px; border-radius: 25px; }
+        .part-pelvis { width: 75px; height: 40px; border-radius: 20px; }
+      }
+    }
+
+    .legs-wrapper {
+      display: flex;
+      gap: 12px;
+      margin-top: 2px;
+
+      .part-leg {
+        width: 30px;
+        height: 140px;
+        border-radius: 15px;
+      }
+    }
+
+    .feet-wrapper {
+      display: flex;
+      gap: 22px;
+      margin-top: 2px;
+
+      .part-foot {
+        width: 40px;
+        height: 20px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .instruction-panel {
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+
+    .controls {
+      margin-top: 0.5rem;
+      
+      .control-btn {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: none;
+        background: white;
+        color: $primary-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: $shadow-sm;
+
+        &:hover {
+          background: $surface-hover;
+          transform: scale(1.05);
+          box-shadow: $shadow-md;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+}

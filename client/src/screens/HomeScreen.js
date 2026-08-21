@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Wind, Eye, Compass, Anchor, Headphones, Hand, User, Shield } from 'lucide-react';
+import { Wind, Eye, Compass, Anchor, Headphones, Hand, User, Shield, Activity } from 'lucide-react';
 import './HomeScreen.scss';
 
 const exercises = [
@@ -13,6 +13,7 @@ const exercises = [
   { title: 'Stop', subtitle: 'To interrupt the stress cycle', path: '/stop', icon: Hand, color: '#fecaca' },
   { title: 'External Observer', subtitle: 'To detach from a difficult emotion', path: '/external-observer', icon: User, color: '#e9d5ff' },
   { title: 'Body Safe Place', subtitle: 'To find calm in your body', path: '/body-safe-place', icon: Shield, color: '#a7f3d0' },
+  { title: 'Body Scan', subtitle: 'Zwiększenie świadomości ciała', path: '/body-scan', icon: Activity, color: '#fca5a5' },
 ];
 
 const containerVariants = {

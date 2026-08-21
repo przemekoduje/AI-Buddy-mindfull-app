@@ -13,6 +13,7 @@ import ValuesCompassScreen from './screens/ValuesCompassScreen';
 import StopScreen from './screens/StopScreen';
 import ExternalObserverScreen from './screens/ExternalObserverScreen';
 import BodySafePlaceScreen from './screens/BodySafePlaceScreen';
+import BodyScanScreen from './screens/BodyScanScreen';
 
 // Komponent z logiką routingu musi być wewnątrz Routera, więc go zostawiamy
 const AppContent = () => {
@@ -32,6 +33,7 @@ const AppContent = () => {
           <Route path="/stop" element={<StopScreen />} />
           <Route path="/external-observer" element={<ExternalObserverScreen />} />
           <Route path="/body-safe-place" element={<BodySafePlaceScreen />} />
+          <Route path="/body-scan" element={<BodyScanScreen />} />
         </Route>
         <Route path="/breathe/session" element={<BreathingSession />} />
       </Routes>
